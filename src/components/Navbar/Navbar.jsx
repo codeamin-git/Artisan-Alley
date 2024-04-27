@@ -1,10 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from "react-tooltip";
+import { useState } from "react";
 
 const Navbar = () => {
-    const {logOut} = useAuth()
+    const { logOut, user } = useAuth()
+
+    const [showLogout, setShowLogout] = useState(false);
+
+    const handleAvatarMouseEnter = () => {
+        setShowLogout(true);
+    };
+
+    const handleAvatarMouseLeave = () => {
+        setShowLogout(false);
+    };
+
     const links = <>
-    <NavLink to='/'>Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -25,9 +39,26 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login'><button>Login</button></Link>
-                <Link to='/register'><button>Register</button></Link>
-                <button onClick={logOut}>Log Out</button>
+                {
+                    user ? <div className="avatar flex flex-col md:flex-row justify-end" onMouseEnter={handleAvatarMouseEnter}
+                        onMouseLeave={handleAvatarMouseLeave}>
+                        <div className="w-10 rounded-full"
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-place="top"
+                            data-tooltip-content={user?.displayName || 'Name not found'}>
+                            <img src={user?.photoURL} />
+                            <Tooltip id="my-tooltip" />
+                        </div> 
+                        {showLogout && (
+                            <button onClick={logOut} className="bg-[#800000] btn text-white">
+                                Log Out
+                            </button>
+                        )}
+                    </div> 
+                    : 
+                    <div className="flex flex-col justify-end md:flex-row"><Link to='/login'><button className="btn">Login</button></Link>
+                        <Link to='/register'><button className="btn">Register</button></Link></div>
+                }
             </div>
         </div>
     );

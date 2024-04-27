@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const {createUser} = useAuth()
@@ -12,12 +13,23 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
+    const navigate = useNavigate()
+    const from = '/'
+
     const onSubmit = (data) => {
         const {name,email,photo,password} = data;
         createUser(email,password)
         .then(result => {
             console.log(result.user);
-            toast.success('Registered Successfully!')
+            const newUser = result.user
+            updateProfile(newUser, {
+                displayName: name,
+                photoURL: photo
+            })
+            if (newUser) {
+                navigate(from)
+                toast.success("Successfully registered!")
+            }
         })
         .catch(error=>{
             console.error(error)

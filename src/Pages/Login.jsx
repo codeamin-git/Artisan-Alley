@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 
 const Login = () => {
     const {signInUser} = useAuth()
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state || '/'
 
     const {
         register,
@@ -16,8 +20,11 @@ const Login = () => {
         const {email, password} = data
         signInUser(email, password)
         .then(result => {
+            toast.success('Logged in successfully')
             console.log(result.user);
-            toast.success('Successfully Logged In!')
+            if (result.user) {
+                navigate(from)
+            }
         })
         .catch(error => {
             console.error(error)
