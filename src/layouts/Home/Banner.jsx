@@ -1,7 +1,9 @@
 
 const Banner = () => {
     return (
-        <div className="relative">
+        <div className="space-y-3">
+            <h1 className="text-6xl font-medium text-center">Welcome to Artisan Alley!</h1>
+            <div className="hero">
             <div className="carousel w-full h-[calc(100vh-120px)] rounded-xl relative">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img src="https://i.ibb.co/pdr3MJL/art-04.jpg" className="w-full" />
@@ -33,10 +35,11 @@ const Banner = () => {
                 </div>
             </div>
 
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
-                <h1 className="text-4xl font-semibold">Discover Artisan Alley: Where Creativity Comes to Life</h1>
-                <p className="">Welcome to Artisan Alley, your haven for all things arts and crafts. Unleash your imagination and find the perfect tools, materials, and inspiration to bring your creative visions to life. Step into a world of handmade wonders and endless possibilities.</p>
+            <div className="hero-content text-white flex flex-col max-h-20">
+                <h1 className="md:text-4xl text-2xl font-semibold">Discover Artisan Alley: Where Creativity Comes to Life</h1>
+                <p className="text-xs md:text-base">Welcome to Artisan Alley, your haven for all things arts and crafts. Unleash your imagination and find the perfect tools, materials, and inspiration to bring your creative visions to life. Step into a world of handmade wonders and endless possibilities.</p>
             </div>
+        </div>
         </div>
     );
 };
