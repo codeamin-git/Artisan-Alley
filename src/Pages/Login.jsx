@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
-    const {signInUser} = useAuth()
+    const { signInUser, googleLogin } = useAuth()
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -16,20 +18,33 @@ const Login = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = data => {
-        const {email, password} = data
-        signInUser(email, password)
-        .then(result => {
-            toast.success('Logged in successfully')
+    // handle social login
+    const handleSocialLogin = socialProvider => {
+        socialProvider().then(result => {
+            toast.success('Successfully logged in')
             console.log(result.user);
             if (result.user) {
                 navigate(from)
             }
+        }).catch((error) => {
+            console.error(error);
         })
-        .catch(error => {
-            console.error(error)
-            toast.error('Email or Password did not match!')
-        })
+    }
+
+    const onSubmit = data => {
+        const { email, password } = data
+        signInUser(email, password)
+            .then(result => {
+                toast.success('Logged in successfully')
+                console.log(result.user);
+                if (result.user) {
+                    navigate(from)
+                }
+            })
+            .catch(error => {
+                console.error(error)
+                toast.error('Email or Password did not match!')
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -39,26 +54,26 @@ const Login = () => {
                     <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                <form 
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="card-body">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input 
-                            {...register("email", { required: true })}
-                            type="email" placeholder="your email" className="input input-bordered" required />
+                            <input
+                                {...register("email", { required: true })}
+                                type="email" placeholder="your email" className="input input-bordered" required />
                             {errors.email && <span>This field is required</span>}
                         </div>
-                        
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input 
-                            {...register("password", { required: true })}
-                            type="password" placeholder="password" className="input input-bordered" required />
+                            <input
+                                {...register("password", { required: true })}
+                                type="password" placeholder="password" className="input input-bordered" required />
                             {errors.password && <span>This field is required</span>}
                         </div>
                         <p>Already have an account? <Link className='link text-blue-600' to='/register'>Register</Link></p>
@@ -66,6 +81,18 @@ const Login = () => {
                             <button className="btn bg-[#228B22] text-white">Login</button>
                         </div>
                     </form>
+                    <div className="ml-7 mr-7 mb-6">
+                            <button
+                                onClick={() => handleSocialLogin(googleLogin)}
+                                className="btn w-1/2 bg-[#0095ffca]">
+                                <FcGoogle />
+                                Google</button>
+                                {/* <button
+                            onClick={() => handleSocialLogin(githubLogin)}
+                            className="btn w-1/2 text-white bg-[#000000]">
+                            <FaGithub />
+                            Github</button> */}
+                        </div>
                 </div>
             </div>
         </div>

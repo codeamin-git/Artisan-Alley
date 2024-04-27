@@ -40,7 +40,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <div className="avatar flex flex-col md:flex-row justify-end" onMouseEnter={handleAvatarMouseEnter}
+                    user ? <div className="avatar flex flex-col md:flex-row justify-end gap-2" onMouseEnter={handleAvatarMouseEnter}
                         onMouseLeave={handleAvatarMouseLeave}>
                         <div className="w-10 rounded-full"
                             data-tooltip-id="my-tooltip"
@@ -56,7 +56,7 @@ const Navbar = () => {
                         )}
                     </div> 
                     : 
-                    <div className="flex flex-col justify-end md:flex-row"><Link to='/login'><button className="btn">Login</button></Link>
+                    <div className="flex flex-col justify-end md:flex-row gap-2"><Link to='/login'><button className="btn">Login</button></Link>
                         <Link to='/register'><button className="btn">Register</button></Link></div>
                 }
             </div>
