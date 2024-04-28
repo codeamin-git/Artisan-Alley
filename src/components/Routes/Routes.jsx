@@ -9,6 +9,7 @@ import AddCraftItem from "../../Pages/AddCraftItem";
 import ViewDetails from "../../Pages/ViewDetails";
 import Error from "../../Pages/Error";
 import PrivateRoutes from "../../privateRoutes/PrivateRoutes";
+import AllArtCraftItems from "../../Pages/AllArtCraftItems/AllArtCraftItems";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: "/register",
           element: <Register></Register>
+        },
+        {
+          path: '/allArtCraftItems',
+          element: <AllArtCraftItems></AllArtCraftItems>
         },
         {
           path: '/addCraftItem',

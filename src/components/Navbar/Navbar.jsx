@@ -34,8 +34,9 @@ const Navbar = () => {
     };
 
     const links = <>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/addCraftItem'>Add Craft Item</NavLink>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/addCraftItem'>Add Craft Item</NavLink></li>
+        <li><NavLink to='/allArtCraftItems'>All Arts & Crafts</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100 shadow-lg">
