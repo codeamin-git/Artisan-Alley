@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const AddCraftItem = () => {
     const {user} = useAuth()
@@ -26,7 +27,10 @@ const AddCraftItem = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            if(data?.insertedId){
+                toast.success('Your item added to database!')
+                console.log(data);
+            }
         })
     }
 
