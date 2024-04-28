@@ -7,11 +7,13 @@ import Register from "../../Pages/Register";
 import Home from "../../layouts/Home/Home";
 import AddCraftItem from "../../Pages/AddCraftItem";
 import ViewDetails from "../../Pages/ViewDetails";
+import Error from "../../Pages/Error";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement: <Error></Error>,
       children: [
         {
           path: '/',
