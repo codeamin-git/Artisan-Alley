@@ -9,7 +9,26 @@ const AddCraftItem = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        console.log(data);
+        const newItem = {
+            ...data,
+            email: user?.email,
+            name: user?.displayName
+        }
+        // send data to server
+        fetch('http://localhost:5000/addCrafts', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newItem)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
 
     return (
         <div style={{backgroundImage:'url(https://i.ibb.co/hVnkmZj/origami-02.jpg)'}} className="bg-cover">
@@ -141,16 +160,16 @@ const AddCraftItem = () => {
                             <span className="label-text font-medium">Email</span>
                         </label>
                         <input
-                            {...register("email")}
-                            type="text" placeholder="your email" className="input input-bordered" value={user?.email}/>
+                        
+                            type="text" placeholder="your email" className="input input-bordered" defaultValue={user?.email} readOnly/>
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text font-medium">Name</span>
                         </label>
                         <input
-                            {...register("name")}
-                            type="text" placeholder="your name" className="input input-bordered" value={user?.displayName}/>
+                            
+                            type="text" placeholder="your name" className="input input-bordered" defaultValue={user?.displayName} readOnly/>
                     </div>
                 </div>
 
