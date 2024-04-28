@@ -54,7 +54,7 @@ const Register = () => {
                             <input 
                             {...register("name", { required: true })}
                             type="text" placeholder="your name" className="input input-bordered" required />
-                            {errors.name && <span>This field is required</span>}
+                            {errors.name && <span className="text-red-500">This field is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -63,7 +63,7 @@ const Register = () => {
                             <input 
                             {...register("email", { required: true })}
                             type="email" placeholder="your email" className="input input-bordered" required />
-                            {errors.email && <span>This field is required</span>}
+                            {errors.email && <span className="text-red-500">This field is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -72,7 +72,7 @@ const Register = () => {
                             <input 
                             {...register("photo", { required: true })}
                             type="text" placeholder="photo URL" className="input input-bordered" required />
-                            {errors.photo && <span>This field is required</span>}
+                            {errors.photo && <span className="text-red-500">This field is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">

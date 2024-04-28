@@ -37,6 +37,7 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/addCraftItem'>Add Craft Item</NavLink></li>
         <li><NavLink to='/allArtCraftItems'>All Arts & Crafts</NavLink></li>
+        <li><NavLink to='/myList'>My Art & Craft List</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100 shadow-lg">

@@ -13,7 +13,7 @@ const AllArtCraftItems = () => {
     }, [])
     return (
         <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table mt-4">
     {/* head */}
     <thead>
       <tr>

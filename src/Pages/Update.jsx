@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
-const AddCraftItem = () => {
-    const {user} = useAuth()
+const Update = () => {
+    const {id} = useParams()
+    const [item, setItem] = useState({})
+
     const {
         register,
         handleSubmit,
@@ -11,32 +14,34 @@ const AddCraftItem = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data);
-        const newItem = {
-            ...data,
-            email: user?.email,
-            name: user?.displayName
-        }
-        // send data to server
-        fetch('http://localhost:5000/addCrafts', {
-            method: "POST",
+        // console.log(data);
+        const updatedItem = data
+        fetch(`http://localhost:5000/updateItem/${id}`, {
+            method: "PUT",
             headers: {
-                'content-type': 'application/json'
+                "content-type": "application/json"
             },
-            body: JSON.stringify(newItem)
+            body: JSON.stringify(updatedItem)
         })
         .then(res => res.json())
         .then(data => {
-            if(data?.insertedId){
-                toast.success('Your item added to database!')
-                console.log(data);
+            console.log(data);
+            if(data.modifiedCount>0){
+                toast.success('This item updated successfully!')
             }
         })
     }
 
+    useEffect(()=>{
+        fetch(`http://localhost:5000/update/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);
+            setItem(data)
+        })
+    }, [id])
     return (
-        <div style={{backgroundImage:'url(https://i.ibb.co/hVnkmZj/origami-02.jpg)'}} className="bg-cover">
-            <h1 className="md:text-6xl text-3xl font-medium text-center mb-4">Here you can add Paper Crafts & Glass Arts item filling the form properly</h1>
+        <div style={{backgroundImage:'url(https://i.ibb.co/R326SjT/arts-01.jpg)'}} className="bg-cover bg-center">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body container mx-auto bg-transparent bg-base-100">
@@ -49,7 +54,7 @@ const AddCraftItem = () => {
                         </label>
                         <input
                             {...register("image", { required: true })}
-                            type="text" placeholder="image URL" className="input input-bordered" required />
+                            type="text" placeholder="image URL" className="input input-bordered" required defaultValue={item.image}/>
                         {errors.image && <span className="text-red-500">This field is required</span>}
                     </div>
                     <div className="form-control w-full">
@@ -58,7 +63,7 @@ const AddCraftItem = () => {
                         </label>
                         <input
                             {...register("itemName", { required: true })}
-                            type="text" placeholder="item name" className="input input-bordered" required />
+                            type="text" placeholder="item name" className="input input-bordered" required defaultValue={item.itemName}/>
                         {errors.itemName && <span className="text-red-500">This field is required</span>}
                     </div>
                 </div>
@@ -69,10 +74,9 @@ const AddCraftItem = () => {
                         <label className="label">
                             <span className="label-text font-medium">Subcategory Name</span>
                         </label>
-                        <select
+                        <select 
                             {...register("subcategory", { required: true })}
-                            type="text" placeholder="select an option" className="input input-bordered" required>
-                            <option value="">select a category</option>
+                            type="text" placeholder="select an option" className="input input-bordered" required >
                             <option value="Card Making">Card Making</option>
                             <option value="Scrapbooking">Scrapbooking</option>
                             <option value="Paper Quilling & Origami">Paper Quilling & Origami</option>
@@ -90,8 +94,7 @@ const AddCraftItem = () => {
                         </label>
                         <select
                             {...register("customization", { required: true })}
-                            type="text" placeholder="select an option" className="input input-bordered" required>
-                            <option value="">select an option</option>
+                            type="text" placeholder="select an option" className="input input-bordered" required >
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -105,7 +108,7 @@ const AddCraftItem = () => {
                         </label>
                         <input
                             {...register("description", { required: true })}
-                            type="text" placeholder="short description" className="input input-bordered" required />
+                            type="text" placeholder="short description" className="input input-bordered" required defaultValue={item.description}/>
                         {errors.description && <span className="text-red-500">This field is required</span>}
                     </div>
 
@@ -117,7 +120,7 @@ const AddCraftItem = () => {
                         </label>
                         <input
                             {...register("price", { required: true })}
-                            type="text" placeholder="price" className="input input-bordered" required />
+                            type="text" placeholder="price" className="input input-bordered" required defaultValue={item.price}/>
                         {errors.price && <span className="text-red-500">This field is required</span>}
                     </div>
                     <div className="form-control w-full">
@@ -126,7 +129,7 @@ const AddCraftItem = () => {
                         </label>
                         <input
                             {...register("rating", { required: true })}
-                            type="text" placeholder="rating" className="input input-bordered" required />
+                            type="text" placeholder="rating" className="input input-bordered" required defaultValue={item.rating}/>
                         {errors.rating && <span className="text-red-500">This field is required</span>}
                     </div>
                 </div>
@@ -139,7 +142,7 @@ const AddCraftItem = () => {
                         </label>
                         <input
                             {...register("processingTime", { required: true })}
-                            type="text" placeholder="processing time" className="input input-bordered" required />
+                            type="text" placeholder="processing time" className="input input-bordered" required defaultValue={item.processingTime}/>
                         {errors.processingTime && <span className="text-red-500">This field is required</span>}
                     </div>
 
@@ -150,39 +153,18 @@ const AddCraftItem = () => {
                         <select
                             {...register("stockStatus", { required: true })}
                             type="text" placeholder="select an option" className="input input-bordered" required>
-                            <option value="">select an option</option>
                             <option value="In Stock">In Stock</option>
                             <option value="Made to Order">Made to Order</option>
                         </select>
                     </div>
                 </div>
 
-                {/* user email & user name */}
-                <div className="flex flex-col md:flex-row gap-4 w-full">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text font-medium">Email</span>
-                        </label>
-                        <input
-                        
-                            type="text" placeholder="your email" className="input input-bordered" defaultValue={user?.email} readOnly/>
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text font-medium">Name</span>
-                        </label>
-                        <input
-                            
-                            type="text" placeholder="your name" className="input input-bordered" defaultValue={user?.displayName} readOnly/>
-                    </div>
-                </div>
-
                 <button className="btn btn-accent w-full mt-4">
-                    Add Item
+                    Update
                 </button>
             </form>
         </div>
     );
 };
 
-export default AddCraftItem;
+export default Update;

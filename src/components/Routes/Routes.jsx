@@ -9,7 +9,9 @@ import AddCraftItem from "../../Pages/AddCraftItem";
 import ViewDetails from "../../Pages/ViewDetails";
 import Error from "../../Pages/Error";
 import PrivateRoutes from "../../privateRoutes/PrivateRoutes";
-import AllArtCraftItems from "../../Pages/AllArtCraftItems/AllArtCraftItems";
+import MyArtCraftList from "../../Pages/MyArtCraftList";
+import AllArtCraftItems from "../../Pages/AllArtCraftItems";
+import Update from "../../Pages/Update";
 
 const router = createBrowserRouter([
     {
@@ -30,12 +32,20 @@ const router = createBrowserRouter([
           element: <Register></Register>
         },
         {
+          path: '/addCraftItem',
+          element: <PrivateRoutes><AddCraftItem></AddCraftItem></PrivateRoutes>
+        },
+        {
           path: '/allArtCraftItems',
           element: <AllArtCraftItems></AllArtCraftItems>
         },
         {
-          path: '/addCraftItem',
-          element: <PrivateRoutes><AddCraftItem></AddCraftItem></PrivateRoutes>
+          path: '/myList',
+          element: <PrivateRoutes><MyArtCraftList></MyArtCraftList></PrivateRoutes>
+        },
+        {
+          path: '/update/:id',
+          element: <PrivateRoutes><Update></Update></PrivateRoutes>
         },
         {
           path: '/viewDetails/:id',

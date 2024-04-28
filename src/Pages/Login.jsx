@@ -64,7 +64,7 @@ const Login = () => {
                             <input
                                 {...register("email", { required: true })}
                                 type="email" placeholder="your email" className="input input-bordered" required />
-                            {errors.email && <span>This field is required</span>}
+                            {errors.email && <span className="text-red-500">This field is required</span>}
                         </div>
 
                         <div className="form-control">
@@ -74,7 +74,7 @@ const Login = () => {
                             <input
                                 {...register("password", { required: true })}
                                 type="password" placeholder="password" className="input input-bordered" required />
-                            {errors.password && <span>This field is required</span>}
+                            {errors.password && <span className="text-red-500">This field is required</span>}
                         </div>
                         <p>Already have an account? <Link className='link text-blue-600' to='/register'>Register</Link></p>
                         <div className="form-control mt-6">
