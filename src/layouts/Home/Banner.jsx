@@ -1,8 +1,13 @@
+import { useTypewriter } from "react-simple-typewriter";
 
 const Banner = () => {
+    const [text] = useTypewriter({
+        words: ['Artisan Alley!'],
+        loop: 0
+      })
     return (
         <div className="space-y-3">
-            <h1 className="text-6xl font-medium text-center">Welcome to Artisan Alley!</h1>
+            <h1 className="text-6xl font-medium text-center">Welcome to <span className="text-[#800080]">{text}</span></h1>
             <div className="hero">
             <div className="carousel w-full h-[calc(100vh-120px)] rounded-xl relative">
                 <div id="slide1" className="carousel-item relative w-full">

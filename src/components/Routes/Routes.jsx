@@ -8,6 +8,7 @@ import Home from "../../layouts/Home/Home";
 import AddCraftItem from "../../Pages/AddCraftItem";
 import ViewDetails from "../../Pages/ViewDetails";
 import Error from "../../Pages/Error";
+import PrivateRoutes from "../../privateRoutes/PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
         },
         {
           path: '/addCraftItem',
-          element: <AddCraftItem></AddCraftItem>
+          element: <PrivateRoutes><AddCraftItem></AddCraftItem></PrivateRoutes>
         },
         {
           path: '/viewDetails/:id',
-          element: <ViewDetails></ViewDetails>,
+          element: <PrivateRoutes><ViewDetails></ViewDetails></PrivateRoutes>,
           loader: ({params}) => fetch(`http://localhost:5000/getCrafts/${params.id}`)
         }
       ]
