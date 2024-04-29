@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyArtCraftList = () => {
     const { user } = useAuth()
     console.log(user);
     const [items, setItems] = useState([])
+    const [control, setControl] = useState(false)
     const [customizationFilter, setCustomizationFilter] = useState('all')
 
     useEffect(() => {
@@ -15,11 +17,42 @@ const MyArtCraftList = () => {
                 console.log(data);
                 setItems(data)
             })
-    }, [user, customizationFilter])
+    }, [user, control, customizationFilter])
 
     const handleCustomizationChange = (e) => {
         setCustomizationFilter(e.target.value);
     };
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/deleteItem/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                              Swal.fire({
+                                title: "Deleted!",
+                                text: "Your coffee has been deleted.",
+                                icon: "success"
+                              });
+                              setControl(!control)
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <div>
@@ -51,7 +84,7 @@ const MyArtCraftList = () => {
                                 </p>
                                 <div className="flex gap-2">
                                     <Link to={`/update/${item._id}`}><button className="btn btn-warning">Update</button></Link>
-                                    <button className="btn btn-error">Delete</button>
+                                    <button onClick={()=>handleDelete(item._id)} className="btn btn-error">Delete</button>
                                 </div>
                             </div>
                         </div>
