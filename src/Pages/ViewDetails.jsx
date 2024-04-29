@@ -5,7 +5,7 @@ const ViewDetails = () => {
     console.log(item);
     const {image, itemName, subcategory, description, price, rating, customization, processingTime, stockStatus} = item;
     return (
-        <div className="flex flex-col md:flex-row container mx-auto">
+        <div className="mb-4 mt-4 flex flex-col md:flex-row container mx-auto">
             <div className="md:w-2/3">
                 <img className="w-full h-[calc(100vh-120px)] rounded-xl" src={image} alt="" />
             </div>

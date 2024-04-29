@@ -12,7 +12,7 @@ const AllArtCraftItems = () => {
         })
     }, [])
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mb-4 min-h-[calc(100vh-120px)]">
             <table className="table mt-4">
     {/* head */}
     <thead>

@@ -55,7 +55,7 @@ const MyArtCraftList = () => {
     }
 
     return (
-        <div>
+        <div className="mb-4 min-h-[calc(100vh-120px)]">
             <div className="text-center mt-4 mb-4">
                 <label htmlFor="customizationFilter">Filter by Customization:</label>
                 <select id="customizationFilter" value={customizationFilter} onChange={handleCustomizationChange}>

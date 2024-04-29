@@ -12,7 +12,7 @@ const CraftItems = () => {
         })
     },[])
     return (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-4 mx-auto container gap-6">
+        <div className="mb-4 grid md:grid-cols-2 lg:grid-cols-3 mt-4 mx-auto container gap-6">
             {
                 items.map(item => <SingleCraftCard key={item._id} item={item}></SingleCraftCard>)
             }
