@@ -44,7 +44,7 @@ const MyArtCraftList = () => {
                         if (data.deletedCount > 0) {
                               Swal.fire({
                                 title: "Deleted!",
-                                text: "Your coffee has been deleted.",
+                                text: "Your item has been deleted.",
                                 icon: "success"
                               });
                               setControl(!control)
