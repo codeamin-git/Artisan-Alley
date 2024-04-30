@@ -16,7 +16,7 @@ const Update = () => {
     const onSubmit = (data) => {
         // console.log(data);
         const updatedItem = data
-        fetch(`http://localhost:5000/updateItem/${id}`, {
+        fetch(`https://arts-crafts-server-side.vercel.app/updateItem/${id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -33,7 +33,7 @@ const Update = () => {
     }
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/update/${id}`)
+        fetch(`https://arts-crafts-server-side.vercel.app/update/${id}`)
         .then(res => res.json())
         .then(data => {
             // console.log(data);
@@ -74,7 +74,7 @@ const Update = () => {
                         <label className="label">
                             <span className="label-text font-medium">Subcategory Name</span>
                         </label>
-                        <select 
+                        <select defaultValue={item.subcategory}
                             {...register("subcategory", { required: true })}
                             type="text" placeholder="select an option" className="input input-bordered" required >
                             <option value="Card Making">Card Making</option>
@@ -82,8 +82,7 @@ const Update = () => {
                             <option value="Paper Quilling & Origami">Paper Quilling & Origami</option>
                             <option value="Glass Painting">Glass Painting</option>
                             <option value="Lampworking">Lampworking</option>
-                            <option value="Glass Dying & Staining
-">Glass Dying & Staining
+                            <option value="Glass Dying & Staining">Glass Dying & Staining
                             </option>
                         </select>
                     </div>
@@ -92,7 +91,7 @@ const Update = () => {
                         <label className="label">
                             <span className="label-text font-medium">Customization</span>
                         </label>
-                        <select
+                        <select defaultValue={item.customization}
                             {...register("customization", { required: true })}
                             type="text" placeholder="select an option" className="input input-bordered" required >
                             <option value="Yes">Yes</option>

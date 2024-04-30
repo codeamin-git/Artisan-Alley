@@ -4,7 +4,7 @@ import SingleCraftCard from "../../components/SingleCraftCard/SingleCraftCard";
 const CraftItems = () => {
     const [items, setItems] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/getCrafts?limit=6')
+        fetch('https://arts-crafts-server-side.vercel.app/getCrafts?limit=6')
         .then(res => res.json())
         .then(data => {
             setItems(data)

@@ -12,6 +12,7 @@ import PrivateRoutes from "../../privateRoutes/PrivateRoutes";
 import MyArtCraftList from "../../Pages/MyArtCraftList";
 import AllArtCraftItems from "../../Pages/AllArtCraftItems";
 import Update from "../../Pages/Update";
+import SubCat from "../../Pages/SubCat";
 
 const router = createBrowserRouter([
     {
@@ -50,7 +51,12 @@ const router = createBrowserRouter([
         {
           path: '/viewDetails/:id',
           element: <PrivateRoutes><ViewDetails></ViewDetails></PrivateRoutes>,
-          loader: ({params}) => fetch(`http://localhost:5000/getCrafts/${params.id}`)
+          loader: ({params}) => fetch(`https://arts-crafts-server-side.vercel.app/getCrafts/${params.id}`)
+        },
+        {
+          path: '/subCat/:sub',
+          element: <SubCat></SubCat>,
+          loader: ({params}) => fetch(`https://arts-crafts-server-side.vercel.app/subCat/${params.sub}`)
         }
       ]
     },

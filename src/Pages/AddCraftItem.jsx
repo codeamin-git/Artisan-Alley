@@ -18,7 +18,7 @@ const AddCraftItem = () => {
             name: user?.displayName
         }
         // send data to server
-        fetch('http://localhost:5000/addCrafts', {
+        fetch('https://arts-crafts-server-side.vercel.app/addCrafts', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -78,8 +78,7 @@ const AddCraftItem = () => {
                             <option value="Paper Quilling & Origami">Paper Quilling & Origami</option>
                             <option value="Glass Painting">Glass Painting</option>
                             <option value="Lampworking">Lampworking</option>
-                            <option value="Glass Dying & Staining
-">Glass Dying & Staining
+                            <option value="Glass Dying & Staining">Glass Dying & Staining
                             </option>
                         </select>
                     </div>

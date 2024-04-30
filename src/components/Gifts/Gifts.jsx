@@ -1,12 +1,16 @@
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-
+import  { useRef, useState } from 'react';
+// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import 'swiper/css/navigation';
+
+import './Gifts.css';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 const Gifts = () => {
     return (
         <div>
@@ -18,16 +22,20 @@ const Gifts = () => {
                 Discover a world of creativity and craftsmanship with our selection of handcrafted gifts, featuring exquisite paper crafts and stunning glass art. Whether you're shopping for a special occasion or just looking to treat yourself, our Gifts section has something for everyone.
             </p>
             </div>
-            <Swiper className='mb-4'
+            <Swiper
       // install Swiper modules
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={50}
-      slidesPerView={3}
-      navigation
-      pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper mb-4"
     >
       <SwiperSlide><img className='h-96 w-96' src="https://i.ibb.co/hVnkmZj/origami-02.jpg" alt="" /></SwiperSlide>
       <SwiperSlide><img className='h-96 w-96' src="https://i.ibb.co/P6Zz6S7/origami-04.jpg" alt="" /></SwiperSlide>

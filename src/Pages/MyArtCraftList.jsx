@@ -11,7 +11,7 @@ const MyArtCraftList = () => {
     const [customizationFilter, setCustomizationFilter] = useState('all')
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myList/${user?.email}?customization=${customizationFilter}`)
+        fetch(`https://arts-crafts-server-side.vercel.app/myList/${user?.email}?customization=${customizationFilter}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -35,7 +35,7 @@ const MyArtCraftList = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/deleteItem/${id}`, {
+                fetch(`https://arts-crafts-server-side.vercel.app/deleteItem/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

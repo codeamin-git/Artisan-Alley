@@ -15,7 +15,7 @@ const SingleCraftCard = ({ item }) => {
                 <p>Rating: {rating}</p>
                 <div className="">
                     <Link to={`/viewDetails/${_id}`}>
-                    <button className="btn w-full btn-primary">View Details</button>
+                    <button className="btn-info btn w-full btn-primary">View Details</button>
                     </Link>
                 </div>
             </div>

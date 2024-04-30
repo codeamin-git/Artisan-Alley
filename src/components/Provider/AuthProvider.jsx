@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
-import { GoogleAuthProvider } from "firebase/auth";
+// import { GoogleAuthProvider } from "firebase/auth";
 
 export const AuthContext = createContext(null);
 
@@ -11,6 +11,7 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider()
+    const githubProvider = new GithubAuthProvider()
 
     // create user with email and password
     const createUser = (email, password)=>{
@@ -28,6 +29,12 @@ const AuthProvider = ({children}) => {
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
+    }
+
+    // github login
+    const githubLogin = () => {
+        setLoading(true);
+        return signInWithPopup(auth, githubProvider)
     }
 
     // log out
@@ -56,6 +63,7 @@ const AuthProvider = ({children}) => {
         createUser,
         signInUser,
         googleLogin,
+        githubLogin,
         logOut,
         loading,
     }
