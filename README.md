@@ -1,8 +1,12 @@
-# React + Vite
+# Artisan Alley
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[https://arts-crafts-eb158.web.app/]
 
-Currently, two official plugins are available:
+Category: Paper Crafts & Glass Art.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User can explore the whole features by login or register.
+- View detail buttons are protected.
+- User can add their desired items to the website.
+- Used Packages react-simple-typewriter to show our banner heading.
+- After login user can see their profile picture and name on hover on the navbar.
+- Used react-tooltip to hover user name.
