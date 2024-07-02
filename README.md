@@ -12,10 +12,6 @@ Features:
 - After login user can see their profile picture and name on hover on the navbar.
 - Used react-tooltip to hover user name.
 
-Certainly! Here’s a short and clear command sequence for cloning and running your repository:
-
----
-
 ## How to Clone and Run This Repository
 
 1. **Clone the repository:**
