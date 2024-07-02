@@ -1,6 +1,6 @@
-# Artisan Alley
+## Artisan Alley
 
-[https://arts-crafts-eb158.web.app/]
+Live: https://arts-crafts-eb158.web.app/
 
 Overview: It helps to enlight people's latent talent. People can express their passion and explore others.
 
