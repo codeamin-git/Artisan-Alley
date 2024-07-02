@@ -1,4 +1,4 @@
-## Artisan Alley
+# Artisan Alley
 
 Live: https://arts-crafts-eb158.web.app/
 
