@@ -2,8 +2,9 @@
 
 [https://arts-crafts-eb158.web.app/]
 
-Category: Paper Crafts & Glass Art.
+Overview: It helps to enlight people's latent talent. People can express their passion and explore others.
 
+Features:
 - User can explore the whole features by login or register.
 - View detail buttons are protected.
 - User can add their desired items to the website.
