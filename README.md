@@ -11,3 +11,33 @@ Features:
 - Used Packages react-simple-typewriter to show our banner heading.
 - After login user can see their profile picture and name on hover on the navbar.
 - Used react-tooltip to hover user name.
+
+Certainly! Here’s a short and clear command sequence for cloning and running your repository:
+
+---
+
+## How to Clone and Run This Repository
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/codeamin-git/Artisan-Alley.git
+   ```
+
+2. **Navigate into the project directory:**
+
+   ```bash
+   cd Artisan-Alley
+   ```
+
+3. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+4. **Run the application:**
+
+   ```bash
+   npm start
+   ```
